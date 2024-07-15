@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квиз</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div id="quiz-container" class="hidden">
+        <div id="timer">Оставшееся время: <span id="time-left"></span></div>
+        <div id="question-buttons"></div>
+        <div id="question-counter">
+            Вопрос <span id="current-question">1</span> из <span id="total-questions">5</span>
+        </div>
+        <div id="question-container">
+            <p id="question-text"></p>
+            <button id="option-a" class="option-button"></button>
+            <button id="option-b" class="option-button"></button>
+            <button id="option-c" class="option-button"></button>
+        </div>
+        <div id="navigation">
+            <button id="prev-button" onclick="prevQuestion()" disabled>Назад</button>
+            <button id="next-button" onclick="nextQuestion()">Ответить</button>
+        </div>
+    </div>
+    <div id="loading">Загрузка вопросов...</div>
+    
+    <!-- Custom modal for confirmation -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="confirm-text"></p>
+            <button id="confirm-yes" onclick="executeAction()">Да</button>
+            <button onclick="closeModal()">Нет</button>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
