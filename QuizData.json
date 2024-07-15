@@ -1,6 +1,6 @@
 {
     "timeLimit": 300,
-    "numberOfQuestions": 4,
+    "numberOfQuestions": 5,
     "questions": [
         {
             "Question": "Вопрос1?",
