@@ -7,6 +7,12 @@ let timeLeft;
 let totalQuestions;
 
 window.onload = async function() {
+    if (localStorage.getItem('quizCompleted')) {
+        window.location.href = 'end.html';
+        disableQuizInteraction();
+        return;
+    }
+    
     try {
         const response = await fetch('QuizData.json');
         if (!response.ok) {
@@ -47,10 +53,6 @@ window.onload = async function() {
 };
 
 
-function endQuizDueToTimeout() {
-    clearInterval(timer);
-    displayResults('Время вышло');
-}
 
 
 function updateTimer() {
@@ -130,14 +132,48 @@ function saveAnswer() {
 }
 
 function confirmEndQuiz() {
+    if (localStorage.getItem('quizCompleted')) {
+        endQuiz()
+    }
+    else {
     showModal("Вы уверены, что хотите завершить тест?", endQuiz);
+    }
+}
+
+
+
+function endQuizDueToTimeout() {
+    clearInterval(timer);
+    displayResults('Время вышло');
+    localStorage.setItem('quizCompleted', 'true');
+    disableQuizInteraction();
 }
 
 function endQuiz() {
-    closeModal()
+    
+    closeModal();
     clearInterval(timer);
     displayResults();
+    localStorage.setItem('quizCompleted', 'true');
+    disableQuizInteraction();
 }
+
+
+function disableQuizInteraction() {
+    document.querySelectorAll('.option-button').forEach(button => {
+        button.disabled = true;
+    });
+
+    document.querySelectorAll('.question-button').forEach(button => {
+        button.disabled = true;
+    });
+
+    document.getElementById('prev-button').disabled = true;
+}
+
+
+
+
 
 function displayResults() {
     let correctCount = 0;
