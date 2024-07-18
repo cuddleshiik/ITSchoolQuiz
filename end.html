@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Квиз завершен</title>
-    <link rel="stylesheet" href="end.css">
+    <link rel="stylesheet" href="styles/end.css">
 </head>
 <body>
     <div id="result-container">
+        <img src="/styles/images/end-logo.png" alt="Логотип" id="logo">
         <h1>Квиз завершен</h1>
         <p>Ваш результат: <span id="score"></span></p>
         <div id="results"></div>
         <button id="restart-button">Заново</button>
     </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", async function() {
             const resultData = JSON.parse(localStorage.getItem('quizResult'));
@@ -38,7 +40,7 @@
 
                         const questionElement = document.createElement('p');
                         questionElement.classList.add('question');
-                        questionElement.textContent = `${questionText.Question}`;
+                        questionElement.textContent = questionText.Question;
                         resultElement.appendChild(questionElement);
 
                         const answersElement = document.createElement('ul');
